@@ -1,0 +1,29 @@
+{
+  "nav": {
+    "home": "Inicio",
+    "charter": "Carta",
+    "join": "Unirse",
+    "forum": "Foro"
+  },
+  "manifest": {
+    "title": "Manifiesto NovaCiv",
+    "subtitle": "Sin bombo ni humo — solo la esencia."
+  },
+  "charter": {
+    "title": "Carta de NovaCiv",
+    "subtitle": "Texto oficial. Versión aprobada por la comunidad."
+  },
+  "join": {
+    "title": "Unirse",
+    "subtitle": "Dos acciones simples — sé parte de nuestra historia.",
+    "joined": "Ya con nosotros",
+    "liked": "Me gusta",
+    "i_join": "Me uno",
+    "i_like": "Me gusta"
+  },
+  "forum": {
+    "title": "Foro",
+    "subtitle": "Debate en vivo — pronto aquí.",
+    "placeholder": "El foro funcionará con Supabase. Esta es una interfaz temporal sin datos."
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "nav": {
+    "home": "Home",
+    "charter": "Charter",
+    "join": "Join",
+    "forum": "Forum"
+  },
+  "manifest": {
+    "title": "NovaCiv Manifesto",
+    "subtitle": "No hype, no fluff — just the essence."
+  },
+  "charter": {
+    "title": "NovaCiv Charter",
+    "subtitle": "Official text. Community-approved version."
+  },
+  "join": {
+    "title": "Join",
+    "subtitle": "Two simple actions — be part of our story.",
+    "joined": "Already joined",
+    "liked": "Likes",
+    "i_join": "I’m in",
+    "i_like": "I like it"
+  },
+  "forum": {
+    "title": "Forum",
+    "subtitle": "Live discussion — coming soon.",
+    "placeholder": "Forum will be powered by Supabase. This is a temporary interface without data."
+  }
+}
