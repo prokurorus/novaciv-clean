@@ -1,63 +1,74 @@
+import React from "react";
 
-import React, { useState } from 'react'
-import { useLang } from '@/hooks/useLang'
-import { useNavigate } from 'react-router-dom'
-
-function encode(data) {
-  return Object.keys(data).map((k) => encodeURIComponent(k)+'='+encodeURIComponent(data[k])).join('&')
-}
-
-export default function Help() {
-  const { t } = useLang()
-  const navigate = useNavigate()
-  const [form, setForm] = useState({ name:'', email:'', roles:'', message:'' })
-  const [busy, setBusy] = useState(false)
-  const [err, setErr] = useState(null)
-
-  async function onSubmit(e) {
-    e.preventDefault()
-    setBusy(true); setErr(null)
-    try {
-      const res = await fetch('/', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: encode({ 'form-name': 'help-contact', ...form })
-      })
-      if (res.ok) navigate('/thank-you')
-      else setErr('Ошибка отправки. Попробуйте позже.')
-    } catch {
-      setErr('Ошибка сети.')
-    } finally {
-      setBusy(false)
-    }
-  }
-
+export default function HelpPage() {
   return (
-    <div className="max-w-2xl space-y-6">
-      <h1 className="text-3xl font-semibold">{t('help.title')}</h1>
-      <p className="text-gray-600">{t('help.subtitle')}</p>
+    <main className="mx-auto max-w-2xl px-4 py-12">
+      <h1 className="text-3xl font-semibold mb-2">Связаться с NovaCiv</h1>
+      <p className="text-sm text-gray-500 mb-8">Опиши, чем ты хочешь помочь или какой вопрос у тебя есть.</p>
 
-      {err && <div className="p-3 rounded-lg bg-rose-50 border border-rose-200 text-rose-700">{err}</div>}
+      <form
+        name="help"
+        method="POST"
+        data-netlify="true"
+        netlify-honeypot="bot-field"
+        action="/thank-you"
+        className="space-y-6"
+      >
+        <input type="hidden" name="form-name" value="help" />
+        <p className="hidden">
+          <label>
+            Не заполнять: <input name="bot-field" />
+          </label>
+        </p>
 
-<form
-  name="help"
-  method="POST"
-  data-netlify="true"
-  netlify-honeypot="bot-field"
-  action="/thank-you"
->
-  <input type="hidden" name="form-name" value="help" />
-  <p style={{ display: "none" }}>
-    <label>Don’t fill this out: <input name="bot-field" /></label>
-  </p>
+        <div>
+          <label className="block text-sm mb-1">Имя</label>
+          <input
+            name="name"
+            required
+            className="w-full rounded-lg border border-gray-300 px-3 py-2 outline-none focus:ring-2 focus:ring-gray-300"
+            placeholder="Руслан"
+          />
+        </div>
 
-  <label>Имя<input name="name" required /></label>
-  <label>Email<input type="email" name="email" required /></label>
-  <label>Роль/номер<input name="role" /></label>
-  <label>Сообщение<textarea name="message" required /></label>
+        <div>
+          <label className="block text-sm mb-1">Email</label>
+          <input
+            type="email"
+            name="email"
+            required
+            className="w-full rounded-lg border border-gray-300 px-3 py-2 outline-none focus:ring-2 focus:ring-gray-300"
+            placeholder="you@example.com"
+          />
+        </div>
 
-  <button type="submit">Отправить</button>
-</form>
-    </div>
-  )
+        <div>
+          <label className="block text-sm mb-1">Роль/номер</label>
+          <input
+            name="role"
+            className="w-full rounded-lg border border-gray-300 px-3 py-2 outline-none focus:ring-2 focus:ring-gray-300"
+            placeholder="например: дизайнер / разработчик / 1"
+          />
+        </div>
+
+        <div>
+          <label className="block text-sm mb-1">Сообщение</label>
+          <textarea
+            name="message"
+            required
+            rows={6}
+            className="w-full rounded-lg border border-gray-300 px-3 py-2 outline-none focus:ring-2 focus:ring-gray-300"
+            placeholder="Коротко и по делу…"
+          />
+        </div>
+
+        <button
+          type="submit"
+          className="inline-flex items-center rounded-xl border border-gray-300 px-4 py-2 shadow-sm hover:bg-gray-50"
+        >
+          Отправить
+        </button>
+      </form>
+    </main>
+  );
 }
