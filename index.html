@@ -9,5 +9,13 @@
   <body class="bg-white text-gray-800">
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
+<!-- Netlify forms detection (hidden) -->
+<form name="help-contact" netlify netlify-honeypot="bot-field" hidden>
+  <input type="text" name="name" />
+  <input type="email" name="email" />
+  <input type="text" name="roles" />
+  <textarea name="message"></textarea>
+</form>
+
   </body>
 </html>

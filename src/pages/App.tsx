@@ -1,7 +1,7 @@
-
 import React from 'react'
 import { Outlet, NavLink } from 'react-router-dom'
 import { useLang } from '@/hooks/useLang'
+import Analytics from '@/components/Analytics' // <-- добавили аналитику
 
 function NavItem({ to, children }: { to: string, children: React.ReactNode }) {
   return (
@@ -21,6 +21,9 @@ export default function App() {
 
   return (
     <div className="min-h-screen flex flex-col">
+      {/* скрипт аналитики Plausible подключится, если в окружении задан VITE_PLAUSIBLE_DOMAIN */}
+      <Analytics />
+
       <header className="sticky top-0 z-20 bg-white/80 backdrop-blur border-b border-gray-200">
         <div className="max-w-4xl mx-auto px-4 py-3 flex items-center justify-between gap-4">
           <div className="font-bold tracking-wide">NovaCiv</div>
@@ -29,6 +32,7 @@ export default function App() {
             <NavItem to="/charter">{t('nav.charter')}</NavItem>
             <NavItem to="/join">{t('nav.join')}</NavItem>
             <NavItem to="/forum">{t('nav.forum')}</NavItem>
+            <NavItem to="/help">{t('nav.help') || 'Help'}</NavItem> {/* <-- новый пункт меню */}
           </nav>
           <div className="flex items-center gap-2">
             <select
@@ -45,11 +49,13 @@ export default function App() {
           </div>
         </div>
       </header>
+
       <main className="flex-1">
         <div className="max-w-4xl mx-auto px-4 py-8">
           <Outlet />
         </div>
       </main>
+
       <footer className="border-t border-gray-200">
         <div className="max-w-4xl mx-auto px-4 py-6 text-sm text-gray-500">
           © NovaCiv. Built for clarity, not hype.
