@@ -39,41 +39,25 @@ export default function Help() {
 
       {err && <div className="p-3 rounded-lg bg-rose-50 border border-rose-200 text-rose-700">{err}</div>}
 
-      <form name="help-contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" onSubmit={onSubmit} className="space-y-4">
-        <input type="hidden" name="form-name" value="help-contact" />
-        <p hidden>
-          <label>Don’t fill this out: <input name="bot-field" onChange={() => {}} /></label>
-        </p>
+<form
+  name="help"
+  method="POST"
+  data-netlify="true"
+  netlify-honeypot="bot-field"
+  action="/thank-you"
+>
+  <input type="hidden" name="form-name" value="help" />
+  <p style={{ display: "none" }}>
+    <label>Don’t fill this out: <input name="bot-field" /></label>
+  </p>
 
-        <div>
-          <label className="block text-sm mb-1">{t('help.name')}</label>
-          <input name="name" required className="w-full border border-gray-300 rounded-lg px-3 py-2"
-                 value={form.name} onChange={(e)=>setForm({...form, name:e.target.value})} />
-        </div>
+  <label>Имя<input name="name" required /></label>
+  <label>Email<input type="email" name="email" required /></label>
+  <label>Роль/номер<input name="role" /></label>
+  <label>Сообщение<textarea name="message" required /></label>
 
-        <div>
-          <label className="block text-sm mb-1">{t('help.email')}</label>
-          <input type="email" name="email" required className="w-full border border-gray-300 rounded-lg px-3 py-2"
-                 value={form.email} onChange={(e)=>setForm({...form, email:e.target.value})} />
-        </div>
-
-        <div>
-          <label className="block text-sm mb-1">{t('help.role')}</label>
-          <input name="roles" placeholder={t('help.role_ph')} className="w-full border border-gray-300 rounded-lg px-3 py-2"
-                 value={form.roles} onChange={(e)=>setForm({...form, roles:e.target.value})} />
-          <p className="text-xs text-gray-500 mt-1">{t('help.role_hint')}</p>
-        </div>
-
-        <div>
-          <label className="block text-sm mb-1">{t('help.message')}</label>
-          <textarea name="message" rows={5} className="w-full border border-gray-300 rounded-lg px-3 py-2"
-                    value={form.message} onChange={(e)=>setForm({...form, message:e.target.value})} />
-        </div>
-
-        <button type="submit" disabled={busy} className="px-4 py-2 rounded-xl bg-gray-900 text-white disabled:opacity-60">
-          {t('help.send')}
-        </button>
-      </form>
+  <button type="submit">Отправить</button>
+</form>
     </div>
   )
 }
